@@ -11,7 +11,7 @@ import scodec.bits.ByteVector
 import scala.xml.Elem
 import scala.concurrent.duration._
 import scalaz.{Reducer, Monoid}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process
 import scalaz.stream.Process._
 import scalaz.stream.text.utf8Encode

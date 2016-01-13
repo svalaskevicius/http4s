@@ -1,7 +1,7 @@
 package org.http4s
 package server
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 import middleware.PushSupport._
 import Status._

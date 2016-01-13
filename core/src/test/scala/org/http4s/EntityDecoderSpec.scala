@@ -11,7 +11,7 @@ import java.io.{FileInputStream,File,InputStreamReader}
 import scala.language.postfixOps
 import scala.util.control.NonFatal
 import scalaz.{-\/, \/-}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process._
 
 

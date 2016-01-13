@@ -3,7 +3,7 @@ package server
 package middleware
 
 import scala.concurrent.duration._
-import scalaz.concurrent.Task
+import fs2.util.Task
 import Method._
 
 class TimeoutSpec extends Http4sSpec {

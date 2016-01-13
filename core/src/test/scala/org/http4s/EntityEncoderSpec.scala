@@ -10,7 +10,7 @@ import scodec.bits.ByteVector
 
 import scala.concurrent.Future
 import scalaz.Rope
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.text.utf8Decode
 import scalaz.stream.Process
 

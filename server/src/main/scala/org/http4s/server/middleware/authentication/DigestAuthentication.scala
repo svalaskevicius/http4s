@@ -11,7 +11,7 @@ import org.http4s.headers.Authorization
 
 import scala.concurrent.duration._
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz._
 
 /**

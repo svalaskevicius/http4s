@@ -5,7 +5,7 @@ import org.http4s.server.MockServer
 import server.MockServer.MockResponse
 
 import scalaz.{ Failure, Success }
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 object PathInHttpServiceSpec extends Http4sSpec {
 

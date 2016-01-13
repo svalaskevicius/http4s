@@ -2,7 +2,7 @@ package org.http4s
 package server
 package middleware
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 /** [[Middleware]] for lifting application/x-www-form-urlencoded bodies into the
   * request query params.

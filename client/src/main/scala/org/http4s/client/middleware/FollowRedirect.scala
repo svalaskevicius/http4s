@@ -5,7 +5,7 @@ package middleware
 import org.http4s._
 
 import scalaz.Kleisli
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 /** Follow redirect responses */
 object FollowRedirect {

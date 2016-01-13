@@ -11,7 +11,7 @@ import scodec.bits.ByteVector
 
 import scala.concurrent.TimeoutException
 import scala.concurrent.duration._
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.concurrent.Strategy.DefaultTimeoutScheduler
 import scalaz.stream.Process
 import scalaz.stream.time

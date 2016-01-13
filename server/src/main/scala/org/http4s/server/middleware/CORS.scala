@@ -22,7 +22,7 @@ import scala.concurrent.duration._
 
 import scalaz._
 import Scalaz._
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.Kleisli._
 
 /**

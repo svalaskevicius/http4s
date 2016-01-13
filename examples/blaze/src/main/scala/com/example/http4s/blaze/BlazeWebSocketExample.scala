@@ -8,7 +8,7 @@ import org.http4s.server.websocket._
 
 import scala.concurrent.duration._
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.concurrent.Strategy
 import scalaz.stream.async.unboundedQueue
 import scalaz.stream.{Process, Sink}

@@ -9,7 +9,7 @@ import org.http4s.util.string._
 import org.http4s.util.{UrlCodingUtils, UrlFormCodec}
 
 import scala.collection.mutable.ListBuffer
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 /** Basic OAuth1 message signing support
   * 

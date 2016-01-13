@@ -16,7 +16,7 @@ import scala.concurrent.duration.Duration
 import scala.concurrent.ExecutionContext.Implicits.global
 import scalaz.\/-
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.{Cause, Process}
 
 

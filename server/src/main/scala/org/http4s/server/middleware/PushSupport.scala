@@ -2,7 +2,7 @@ package org.http4s
 package server
 package middleware
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.Kleisli.kleisli
 import org.log4s.getLogger
 

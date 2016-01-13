@@ -4,7 +4,7 @@ import org.scalameter.PerformanceTest
 import org.scalameter.api._
 import org.scalameter.PerformanceTest
 import scala.concurrent.{ExecutionContext, Await, Future}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scala.concurrent.duration._
 import java.util.{ArrayDeque, Deque}
 

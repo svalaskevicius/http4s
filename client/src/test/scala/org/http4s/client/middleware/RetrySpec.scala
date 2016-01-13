@@ -6,7 +6,7 @@ import org.http4s.Status._
 import org.http4s.Method._
 import org.http4s.headers.Location
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 import scala.language.postfixOps
 import scala.concurrent.duration._

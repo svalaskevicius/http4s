@@ -9,7 +9,7 @@ import org.http4s.util.StringWriter
 import scodec.bits.ByteVector
 
 import scala.concurrent.{ExecutionContext, Future}
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 class CachingChunkWriter(headers: StringWriter,
                          pipe: TailStage[ByteBuffer],

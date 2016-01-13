@@ -1,6 +1,6 @@
 package org.http4s.client.blaze
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 import org.http4s._
 

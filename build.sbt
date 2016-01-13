@@ -16,8 +16,8 @@ import pl.project13.scala.sbt.SbtJmh.jmhSettings
 organization in ThisBuild := "org.http4s"
 version      in ThisBuild := "0.12.0-SNAPSHOT"
 apiVersion   in ThisBuild <<= version.map(extractApiVersion)
-scalaVersion in ThisBuild := "2.10.6"
-crossScalaVersions in ThisBuild <<= scalaVersion(Seq(_, "2.11.7"))
+scalaVersion in ThisBuild := "2.11.7"
+//crossScalaVersions in ThisBuild <<= scalaVersion(Seq(_, "2.11.7"))
 
 // Root project
 name := "root"
@@ -32,12 +32,12 @@ lazy val core = libraryProject("core")
     buildInfoKeys := Seq[BuildInfoKey](version, scalaVersion, apiVersion),
     buildInfoPackage <<= organization,
     libraryDependencies <++= scalaVersion { v => Seq(
+      fs2,
       http4sWebsocket,
       log4s,
       parboiled,
       scalaReflect(v) % "provided",
       scalazCore,
-      scalazStream,
       scodecBits
     ) },
     libraryDependencies <++= scalaVersion (

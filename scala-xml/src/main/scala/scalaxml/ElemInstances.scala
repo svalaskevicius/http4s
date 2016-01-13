@@ -6,7 +6,7 @@ import java.io.StringReader
 import headers.`Content-Type`
 import scala.util.control.NonFatal
 import scala.xml._
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 trait ElemInstances {
   implicit def xmlEnocder(implicit charset: Charset = DefaultCharset): EntityEncoder[Elem] =

@@ -20,7 +20,7 @@ import scala.util.{Failure, Success}
 import scalaz.stream.Process._
 import scalaz.stream.Cause.{Terminated, End}
 import scalaz.{-\/, \/-}
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 /** Utility bits for dealing with the HTTP 1.x protocol */
 trait Http1Stage { self: TailStage[ByteBuffer] =>

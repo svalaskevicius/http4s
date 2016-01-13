@@ -15,7 +15,7 @@ import org.eclipse.jetty.server.ServerConnector
 import org.http4s.servlet.{ServletIo, ServletContainer, Http4sServlet}
 
 import scala.concurrent.duration._
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 import org.eclipse.jetty.util.component.AbstractLifeCycle.AbstractLifeCycleListener
 import org.eclipse.jetty.util.component.LifeCycle

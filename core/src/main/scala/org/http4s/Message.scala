@@ -4,10 +4,10 @@ import java.io.File
 import java.net.{InetSocketAddress, InetAddress}
 import org.http4s.headers._
 import org.http4s.server.ServerSoftware
-import scalaz.concurrent.Task
-import scalaz.stream.Process
-import scalaz.stream.text.utf8Decode
-import scalaz.syntax.monad._
+import org.http4s.util.TaskMonad
+import fs2.util.Task
+import fs2.Stream
+//import scalaz.stream.text.utf8Decode
 
 /**
  * Represents a HTTP Message. The interesting subclasses are Request and Response
@@ -23,13 +23,13 @@ sealed trait Message extends MessageOps { self =>
   
   def body: EntityBody
 
-  final def bodyAsText(implicit defaultCharset: Charset = DefaultCharset): Process[Task, String] = {
+  final def bodyAsText(implicit defaultCharset: Charset = DefaultCharset): Stream[Task, String] = {
     (charset getOrElse defaultCharset) match {
       case Charset.`UTF-8` =>
         // suspect this one is more efficient, though this is superstition
-        body |> utf8Decode
+        body.pipe(utf8Decode)
       case cs =>
-        body |> util.decode(cs)
+        body.pipe(util.decode(cs))
     }
 
   }

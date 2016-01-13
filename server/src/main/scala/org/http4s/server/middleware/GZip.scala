@@ -8,7 +8,7 @@ import org.http4s.headers.{`Content-Type`, `Content-Length`, `Content-Encoding`,
 import org.log4s.getLogger
 
 import scalaz.stream.Process._
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.Kleisli.kleisli
 
 import scodec.bits.ByteVector

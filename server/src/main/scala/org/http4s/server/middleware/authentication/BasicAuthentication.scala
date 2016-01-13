@@ -5,7 +5,7 @@ package authentication
 
 import org.http4s.headers.Authorization
 import scalaz._
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 /**
  * Provides Basic Authentication from RFC 2617.

@@ -7,7 +7,7 @@ import scala.annotation.tailrec
 import scala.collection.mutable
 import scalaz.{-\/, \/-, \/}
 import scalaz.syntax.either._
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 private object PoolManager {
   type Callback[A] = Throwable \/ A => Unit

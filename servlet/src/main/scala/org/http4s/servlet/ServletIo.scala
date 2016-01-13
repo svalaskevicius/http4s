@@ -11,7 +11,7 @@ import scodec.bits.ByteVector
 import scala.annotation.tailrec
 import scalaz.stream.Cause.{End, Terminated}
 import scalaz.{\/, -\/}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process._
 import scalaz.stream.io.chunkR
 import scalaz.syntax.either._

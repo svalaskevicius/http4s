@@ -1,7 +1,7 @@
 package org.http4s
 package client
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 /** Type that is responsible for the client lifecycle
   *

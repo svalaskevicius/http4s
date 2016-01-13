@@ -1,7 +1,7 @@
 package org.http4s
 package client
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 object MockClient {
   def apply(service: HttpService, dispose: Task[Unit] = Task.now(())) = Client(

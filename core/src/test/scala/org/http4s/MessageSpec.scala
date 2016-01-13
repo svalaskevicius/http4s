@@ -4,7 +4,7 @@ import java.net.InetSocketAddress
 
 import org.http4s.headers.`Content-Type`
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 
 class MessageSpec extends Http4sSpec {

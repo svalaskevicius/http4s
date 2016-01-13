@@ -4,7 +4,7 @@ package docs
 import org.http4s.dsl._
 
 import org.specs2.mutable.Specification
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process
 
 class AsynchronousExample extends Specification {

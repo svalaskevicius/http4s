@@ -1,7 +1,7 @@
 package org.http4s
 package client
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 private final class BasicManager[A <: Connection](builder: ConnectionBuilder[A]) extends ConnectionManager[A] {
   override def borrow(requestKey: RequestKey): Task[A] =

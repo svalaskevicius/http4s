@@ -5,7 +5,7 @@ import org.http4s.websocket.Websocket
 import org.http4s.websocket.WebsocketBits.WebSocketFrame
 
 import scalaz.stream.{Exchange, Process, Sink}
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 package object websocket {
   val websocketKey = AttributeKey.http4s[Websocket]("websocket")

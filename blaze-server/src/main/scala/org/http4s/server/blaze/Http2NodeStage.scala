@@ -17,7 +17,7 @@ import Http2Exception.{ PROTOCOL_ERROR, INTERNAL_ERROR }
 
 import scodec.bits.ByteVector
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process
 import scalaz.stream.Cause.{Terminated, End}
 import scalaz.{\/-, -\/}

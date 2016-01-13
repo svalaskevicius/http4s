@@ -3,12 +3,12 @@ package org.http4s
 import org.http4s.client.impl.{EmptyRequestGenerator, EntityRequestGenerator}
 import Method.{ PermitsBody, NoBody}
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 
 /** Provides extension methods for using the a http4s [[org.http4s.client.Client]]
   * {{{
-  *   import scalaz.concurrent.Task
+  *   import fs2.util.Task
   *   import org.http4s._
   *   import org.http4s.client._
   *   import org.http4s.Http4s._

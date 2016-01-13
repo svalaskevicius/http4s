@@ -5,7 +5,7 @@ import scodec.bits.ByteVector
 import scala.annotation.tailrec
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.{Cause, Process}
 import scalaz.stream.Process._
 import scalaz.stream.Cause._

@@ -1,6 +1,6 @@
 package org.http4s
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 /**
   * There are 4 HttpService constructors:

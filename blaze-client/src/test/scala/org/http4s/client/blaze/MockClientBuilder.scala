@@ -6,7 +6,7 @@ import java.nio.ByteBuffer
 
 import org.http4s.blaze.pipeline.{LeafBuilder, HeadStage}
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 object MockClientBuilder {
   def builder(head: => HeadStage[ByteBuffer], tail: => BlazeConnection): ConnectionBuilder[BlazeConnection] = {

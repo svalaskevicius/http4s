@@ -10,7 +10,7 @@ import org.http4s.{Method, Response, Request}
 
 import scalaz.stream.Cause.End
 import scalaz.{\/, -\/, \/-}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process.{Halt, halt}
 
 object Metrics {

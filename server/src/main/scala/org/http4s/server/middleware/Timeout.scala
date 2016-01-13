@@ -3,7 +3,7 @@ package server
 package middleware
 
 import scala.concurrent.duration._
-import scalaz.concurrent.Task
+import fs2.util.Task
 import java.util.concurrent.{TimeUnit, ScheduledThreadPoolExecutor}
 import scalaz.\/-
 import scalaz.syntax.monad._

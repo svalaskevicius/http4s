@@ -7,7 +7,7 @@ import scodec.bits.ByteVector
 
 import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process
 
 /** Discards the body, killing it so as to clean up resources

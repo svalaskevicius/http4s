@@ -6,7 +6,7 @@ import org.http4s.server.middleware.PushSupport
 import org.specs2.matcher.OptionMatchers
 import scodec.bits.ByteVector
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process._
 
 class MockServerSpec extends Http4sSpec with OptionMatchers {

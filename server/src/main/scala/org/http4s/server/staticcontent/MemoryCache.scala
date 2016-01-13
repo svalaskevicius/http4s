@@ -6,7 +6,7 @@ import scodec.bits.ByteVector
 
 import java.util.concurrent.ConcurrentHashMap
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process
 
 import org.log4s.getLogger

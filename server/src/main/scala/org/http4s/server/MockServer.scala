@@ -5,7 +5,7 @@ package server
 import org.http4s.server.MockServer._
 import scodec.bits.ByteVector
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 class MockServer(service: HttpService) {
 

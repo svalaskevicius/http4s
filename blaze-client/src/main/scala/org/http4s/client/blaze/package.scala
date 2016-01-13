@@ -6,7 +6,7 @@ import java.nio.ByteBuffer
 import org.http4s.Uri.{Scheme, Authority}
 import org.http4s.blaze.pipeline.TailStage
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 
 package object blaze {

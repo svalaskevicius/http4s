@@ -10,7 +10,7 @@ import org.http4s.util.StringWriter
 import scodec.bits.ByteVector
 
 import scala.concurrent.{ExecutionContext, Future, Promise}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.{-\/, \/-}
 
 class ChunkProcessWriter(private var headers: StringWriter,

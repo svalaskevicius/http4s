@@ -2,7 +2,7 @@ package org.http4s
 package client
 
 import scala.util.control.NonFatal
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 import org.log4s.getLogger
 

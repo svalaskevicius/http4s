@@ -20,7 +20,7 @@ import scala.annotation.tailrec
 import scala.concurrent.ExecutionContext
 import scala.util.{Failure, Success}
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Cause.{End, Terminated}
 import scalaz.stream.Process
 import scalaz.stream.Process.{Halt, halt}

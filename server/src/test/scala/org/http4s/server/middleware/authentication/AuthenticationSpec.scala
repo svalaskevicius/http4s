@@ -10,7 +10,7 @@ import org.http4s.headers._
 import org.http4s.parser.HttpHeaderParser
 import org.http4s.util.CaseInsensitiveString
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 import scala.concurrent.duration._
 

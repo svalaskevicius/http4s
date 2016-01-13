@@ -3,7 +3,7 @@ package client
 
 import org.http4s.headers.Accept
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process
 import scalaz.stream.Process.{eval, eval_}
 

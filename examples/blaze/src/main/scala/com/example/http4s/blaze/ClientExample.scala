@@ -7,7 +7,7 @@ object ClientExample {
 
 /// code_ref: blaze_client_example
     import org.http4s.Http4s._
-    import scalaz.concurrent.Task
+    import fs2.util.Task
 
     val client = org.http4s.client.blaze.defaultClient
 

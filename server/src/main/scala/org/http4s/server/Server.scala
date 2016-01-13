@@ -4,7 +4,7 @@ package server
 import java.net.{InetAddress, InetSocketAddress}
 import java.util.concurrent.{CountDownLatch, ExecutorService}
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 trait Server {
   def shutdown: Task[this.type]

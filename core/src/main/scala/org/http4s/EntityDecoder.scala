@@ -6,14 +6,15 @@ import javax.xml.parsers.SAXParser
 import org.xml.sax.{InputSource, SAXParseException}
 import java.io.{File, FileOutputStream}
 import org.http4s.headers.`Content-Type`
+import org.http4s.util._
 import scodec.bits.ByteVector
 
 import scala.annotation.unchecked.uncheckedVariance
 import scala.util.control.NonFatal
 import scalaz.Liskov.{<~<, refl}
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.std.string._
-import scalaz.stream.{io, process1}
+//import scalaz.stream.{io, process1}
 import scalaz.syntax.monad._
 import scalaz.{-\/, EitherT, \/, \/-}
 
@@ -119,11 +120,11 @@ object EntityDecoder extends EntityDecoderInstances {
 
   /** Helper method which simply gathers the body into a single ByteVector */
   def collectBinary(msg: Message): DecodeResult[ByteVector] =
-    DecodeResult.success(msg.body.runFoldMap(identity))
+    DecodeResult.success(msg.body.runFold(ByteVector.empty)(_ ++ _).run)
 
   /** Decodes a message to a String */
   def decodeString(msg: Message)(implicit defaultCharset: Charset = DefaultCharset): Task[String] =
-    msg.bodyAsText.foldMonoid.runLastOr("")
+    msg.bodyAsText.runFold(new StringBuffer)(_.append(_)).run.map(_.toString)
 }
 
 /** Implementations of the EntityDecoder instances */

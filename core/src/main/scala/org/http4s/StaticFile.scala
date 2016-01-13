@@ -8,15 +8,17 @@ import java.nio.channels.{CompletionHandler, AsynchronousFileChannel}
 import java.util.concurrent.ExecutorService
 import java.time.Instant
 
-import scalaz.stream.Cause.{End, Terminated}
+//import scalaz.stream.Cause.{End, Terminated}
 import scalaz.{\/-, -\/}
-import scalaz.concurrent.{Strategy, Task}
-import scalaz.stream.io
-import scalaz.stream.Process
-import Process._
+import fs2.Strategy
+import fs2.util.Task
+//import scalaz.stream.io
+import fs2.Stream
+import fs2.Stream._
 
 import org.http4s.headers._
 import org.http4s.Status.NotModified
+import org.http4s.util.DefaultExecutorService
 import org.log4s.getLogger
 import scodec.bits.ByteVector
 
@@ -27,17 +29,17 @@ object StaticFile {
   val DefaultBufferSize = 10240
 
   def fromString(url: String, req: Option[Request] = None)
-                (implicit es: ExecutorService = Strategy.DefaultExecutorService): Option[Response] = {
+                (implicit es: ExecutorService = DefaultExecutorService): Option[Response] = {
     fromFile(new File(url), req)
   }
 
   def fromResource(name: String, req: Option[Request] = None)
-             (implicit es: ExecutorService = Strategy.DefaultExecutorService): Option[Response] = {
+             (implicit es: ExecutorService = DefaultExecutorService): Option[Response] = {
     Option(getClass.getResource(name)).flatMap(fromURL(_, req))
   }
 
   def fromURL(url: URL, req: Option[Request] = None)
-             (implicit es: ExecutorService = Strategy.DefaultExecutorService): Option[Response] = {
+             (implicit es: ExecutorService = DefaultExecutorService): Option[Response] = {
     val lastmod = Instant.ofEpochMilli(url.openConnection.getLastModified())
     val expired = req
       .flatMap(_.headers.get(`If-Modified-Since`))
@@ -52,12 +54,12 @@ object StaticFile {
 
       Some(Response(
         headers = headers,
-        body    = Process.constant(DefaultBufferSize).toSource.through(io.chunkR(url.openStream))
+        body    = Stream.constant(DefaultBufferSize).through(io.chunkR(url.openStream))
       ))
     } else Some(Response(NotModified))
   }
 
-  def fromFile(f: File, req: Option[Request] = None)(implicit es: ExecutorService = Strategy.DefaultExecutorService): Option[Response] =
+  def fromFile(f: File, req: Option[Request] = None)(implicit es: ExecutorService = DefaultExecutorService): Option[Response] =
     fromFile(f, DefaultBufferSize, req)
 
   def fromFile(f: File, buffsize: Int, req: Option[Request])
@@ -85,7 +87,7 @@ object StaticFile {
     notModified orElse {
 
       val (body, contentLength) =
-        if (f.length() < end) (halt, 0)
+        if (f.length() < end) (Stream.empty, 0)
         else (fileToBody(f, start, end, buffsize), (end - start).toInt)
 
       val contentType = {
@@ -112,7 +114,7 @@ object StaticFile {
   }}
 
   private def fileToBody(f: File, start: Long, end: Long, buffsize: Int)
-                (implicit es: ExecutorService): Process[Task, ByteVector] = {
+                (implicit es: ExecutorService): EntityBody = {
 
     val outer = Task {
 
@@ -123,7 +125,7 @@ object StaticFile {
 
       val innerTask = Task.async[ByteVector]{ cb =>
         // Check for ending condition
-        if (!ch.isOpen) cb(-\/(Terminated(End)))
+        if (!ch.isOpen) cb(Left(Terminated(End)))
 
         else {
           val remaining = end - position
@@ -133,7 +135,7 @@ object StaticFile {
             def failed(t: Throwable, attachment: Null) {
               logger.error(t)("Static file NIO process failed")
               ch.close()
-              cb(-\/(t))
+              cb(Left(t))
             }
 
             def completed(count: Integer, attachment: Null) {
@@ -149,18 +151,18 @@ object StaticFile {
               position += count
               if (position >= end) ch.close()
 
-              cb(\/-(c))
+              cb(Right(c))
             }
           })
         }
       }
 
-      val cleanup: Process[Task, Nothing] = eval_(Task[Unit]{
+      val cleanup: Stream[Task, Nothing] = eval_(Task[Unit]{
         logger.trace(s"Cleaning up file: ensuring ${f.toURI} is closed")
         if (ch.isOpen) ch.close()
-      })
+      }(Strategy.fromExecutor(es)))
 
-      def go(c: ByteVector): Process[Task, ByteVector] = {
+      def go(c: ByteVector): EntityBody = {
         emit(c) ++ awaitOr(innerTask)(_ => cleanup)(go)
       }
 

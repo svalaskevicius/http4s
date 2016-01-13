@@ -4,7 +4,7 @@ package impl
 
 import org.http4s.headers.{`WWW-Authenticate`, `Proxy-Authenticate`, Location, `Content-Length`}
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 import org.http4s.EntityEncoder.Entity
 

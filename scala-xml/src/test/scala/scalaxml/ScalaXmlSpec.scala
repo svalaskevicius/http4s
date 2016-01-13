@@ -4,7 +4,7 @@ package scalaxml
 import scodec.bits.ByteVector
 
 import scala.xml.Elem
-import scalaz.concurrent.Task
+import fs2.util.Task
 import scalaz.stream.Process
 import scalaz.stream.Process.emit
 import scalaz.stream.text.utf8Decode

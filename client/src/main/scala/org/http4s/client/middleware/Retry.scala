@@ -11,7 +11,7 @@ import scala.concurrent.duration._
 import scala.math.{pow, min, random}
 import scalaz.Kleisli
 
-import scalaz.concurrent.Task
+import fs2.util.Task
 
 
 object Retry {
